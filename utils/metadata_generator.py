@@ -18,14 +18,14 @@ def extract_macros_params(line: str, macros_name: str) -> Union[str, None]:
     return None
 
 
-def parse_file(full_path: str) -> Union[dict, None]:
+def parse_file(full_path: str) -> List[Union[Dict, None]]:
+    result = []
     with open(full_path, 'r') as file:
         for line in file:
-            result = extract_macros_params(line, "DECLARE_SAVEABLE")
-            if result:
-                data = parse_declare_saved_begin(file, result, full_path)
-                return data
-        return None
+            macros_params = extract_macros_params(line, "DECLARE_SAVEABLE")
+            if macros_params:
+                result.append(parse_declare_saved_begin(file, macros_params, full_path))
+    return result
 
 
 def parse_declare_saved_begin(file: io.TextIOWrapper, class_and_base: str, filename: str) -> dict:
@@ -90,7 +90,7 @@ def generate_metadata(directory: str) -> List[dict]:
             if "KvMacros.h" not in full_path:
                 parsed_data = parse_file(full_path)
                 if parsed_data:
-                    result.append(parsed_data)
+                    result += parsed_data
     return result
 
 
