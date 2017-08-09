@@ -36,6 +36,7 @@ install:
     brew install gimme;
     eval "$(gimme 1.6)";
     brew install qt;
+    brew install python3;
     brew info qt;
     export CMAKE_PREFIX_PATH=/opt/qt58/;
     export PATH="/usr/local/opt/qt/bin:$PATH";
