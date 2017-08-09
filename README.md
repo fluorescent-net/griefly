@@ -36,7 +36,7 @@ It should be possible to build everything without Qt Creator, but the guide assu
 How to build everything on Linux
 --------------------------------
 
-1. Install dependencies. Look into `.travis.yml` file for clues. (For Arch Linux only: All dependencies can be installed with ` sudo pacman -S git qt5-base qt5-multimedia go python3.5 mesa gcc`)
+1. Install dependencies. Look into `.travis.yml` file for clues. (For Arch Linux only: All dependencies can be installed with ` sudo pacman -S git qt5-base qt5-multimedia go python mesa gcc`)
 2. `cd` into installation directory.
 3. `git clone https://github.com/griefly/griefly.git`
 4. `cd griefly`

@@ -36,7 +36,8 @@ def format_metadata(image: Image) -> List[str]:
     print("Extracting metadata from {}...".format(image.filename))
 
     if is_metadata_valid(image.info):
-        metadata = [line.replace('\t', '') for line in image.info.split('\n')]
+        metadata = image.info['Description'].split('\n')
+        metadata = [line.replace('\t', '') for line in metadata]
         return metadata[1:-2]  # Strip BEGIN DMI/END DMI and empty last line
     raise Exception("Dmi metadata is corrupted!")
 
@@ -46,6 +47,7 @@ def extract_key_value(line: str) -> Tuple[str, Union[List[float], int, float, st
     value = line.split()[2]
 
     if key == 'state':
+        value = value[1:-1]  # Strip quote symbols
         return key, value
 
     if ',' in value:
